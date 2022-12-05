@@ -7,13 +7,15 @@ import { SharedModule } from '../shared/shared.module';
 import { GoogleSigninDirective } from './google-signin.directive';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EmailLoginComponent } from './email-login/email-login.component';
+import { FacebookSigninDirective } from './facebook-signin.directive';
 
 
 @NgModule({
   declarations: [
     LoginPageComponent,
     GoogleSigninDirective,
-    EmailLoginComponent
+    EmailLoginComponent,
+    FacebookSigninDirective
   ],
   imports: [
     CommonModule,
