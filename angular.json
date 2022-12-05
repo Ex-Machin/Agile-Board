@@ -37,9 +37,9 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+               },
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
@@ -99,6 +99,16 @@
               "src/styles.scss"
             ],
             "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "firestarter-demo:build:production",
+            "firebaseProject": "test-e05f6",
+            "firebaseHostingSite": "test-e05f6"
           }
         }
       }

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "test-e05f6": {
+      "hosting": {
+        "firestarter-demo": [
+          "test-e05f6"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "test-e05f6"
+  }
+}
