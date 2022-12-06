@@ -4,9 +4,17 @@ button {
     }
 }
 
-
 :host {
     text-align: center;
+}
+
+.buttons {
+    button {
+        margin-left: 5px;
+        &:first-child {
+            margin-left: 0px;
+        }
+    }
 }
 
 .logout {
