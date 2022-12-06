@@ -7,6 +7,7 @@ import { EmailLoginComponent } from './email-login/email-login.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { O2AuthSigninDirective } from './o2auth-signin-directives/o2auth-signin.directive';
 import { UserRoutingModule } from './user-routing.module';
+import { CabinetComponent } from './cabinet/cabinet.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { UserRoutingModule } from './user-routing.module';
     LoginPageComponent,
     EmailLoginComponent,
     O2AuthSigninDirective,
+    CabinetComponent,
   ],
   imports: [
     CommonModule,

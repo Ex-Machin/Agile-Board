@@ -1,0 +1,5 @@
+    <div *ngIf="afAuth.authState | async as user" class="logout">
+        <p>Email <strong>{{user.email}}</strong></p>
+        <p>Name: <strong>{{user.displayName}}</strong></p>
+        <button mat-stroked-button (click)="signOut()">Logout</button>
+    </div>

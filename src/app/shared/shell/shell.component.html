@@ -27,15 +27,15 @@
                 <a mat-button routerLink="/kanban">🍱 Kanban Demo</a>
                 <a mat-button routerLink="/customers">⚡ SSR Demo</a>
 
-                <a mat-button routerLink="/login">🔑 Login</a>
-
+                <a mat-button routerLink="/login"  *ngIf="!user">🔑 Login </a>
+                <a mat-button routerLink="/cabinet"  *ngIf="user">{{user.email}}</a>
 
             </div>
             <button mat-icon-button [matMenuTriggerFor]="menu">
                 <mat-icon>more_vert</mat-icon>
             </button>
 
-            <mat-menu #menu="matMenu">
+            <mat-menu #menu="matMenu" >
                 <a mat-menu-item href="https://fireship.page.link/slack">
                     <i>💬</i>
                     <span>Chat on Slack</span>

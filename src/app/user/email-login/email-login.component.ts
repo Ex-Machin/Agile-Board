@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-email-login',
@@ -14,7 +15,7 @@ export class EmailLoginComponent implements OnInit {
   loading = false;
   serverMessage!: string;
 
-  constructor(private afAuth: AngularFireAuth, private fb: FormBuilder) {}
+  constructor(private afAuth: AngularFireAuth, private fb: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -59,6 +60,12 @@ export class EmailLoginComponent implements OnInit {
     }
   }
 
+  afterAuth(user: any) {
+    localStorage.setItem('user', JSON.stringify(user));
+    JSON.parse(localStorage.getItem('user')!);
+    this.router.navigate(['/cabinet' ])
+  }
+
   async onSubmit() {
     this.loading = true;
 
@@ -67,10 +74,14 @@ export class EmailLoginComponent implements OnInit {
 
     try {
       if (this.isLogin) {
-        await this.afAuth.signInWithEmailAndPassword(email, password);
+        await this.afAuth.signInWithEmailAndPassword(email, password).then(({user}) => {          
+          this.afterAuth(user)
+        });
       }
       if (this.isSignup) {
-        await this.afAuth.createUserWithEmailAndPassword(email, password);
+        await this.afAuth.createUserWithEmailAndPassword(email, password).then(({user}) => {          
+          this.afterAuth(user)
+        });
       }
       if (this.isPasswordReset) {
         await this.afAuth.sendPasswordResetEmail(email);

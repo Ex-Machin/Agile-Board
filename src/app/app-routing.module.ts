@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AuthGuard } from './user/auth.guard';
+import { CabinetComponent } from './user/cabinet/cabinet.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
       import('./kanban/kanban.module').then((m) => m.KanbanModule),
     canActivate: [AuthGuard],
   },
+  { path: 'cabinet', component: CabinetComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
