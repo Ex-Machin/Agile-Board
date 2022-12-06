@@ -5,10 +5,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-email-login',
   templateUrl: './email-login.component.html',
-  styleUrls: ['./email-login.component.scss']
+  styleUrls: ['./email-login.component.scss'],
 })
 export class EmailLoginComponent implements OnInit {
-
   form!: FormGroup;
   type: 'login' | 'signup' | 'reset' = 'signup';
 
@@ -20,14 +19,11 @@ export class EmailLoginComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: [
-        '', [Validators.minLength(6), Validators.required]
-      ],
-      passwordConfirm: ['', []]
-    })
-    
+      password: ['', [Validators.minLength(6), Validators.required]],
+      passwordConfirm: ['', []],
+    });
   }
-  changeType(val: any) {
+  changeType(val: typeof this.type) {
     this.type = val;
   }
 
@@ -48,7 +44,7 @@ export class EmailLoginComponent implements OnInit {
   }
 
   get password() {
-    return this.form.get('passwordConfirm')
+    return this.form.get('password');
   }
 
   get passwordConfirm() {
@@ -59,19 +55,19 @@ export class EmailLoginComponent implements OnInit {
     if (this.type !== 'signup') {
       return true;
     } else {
-      return this.password?.value === this.passwordConfirm?.value
+      return this.password?.value === this.passwordConfirm?.value;
     }
   }
 
   async onSubmit() {
-    this.loading = true
+    this.loading = true;
 
     const email = this.email?.value;
     const password = this.password?.value;
 
     try {
       if (this.isLogin) {
-        await this.afAuth.signInWithEmailAndPassword(email, password)
+        await this.afAuth.signInWithEmailAndPassword(email, password);
       }
       if (this.isSignup) {
         await this.afAuth.createUserWithEmailAndPassword(email, password);
@@ -80,12 +76,10 @@ export class EmailLoginComponent implements OnInit {
         await this.afAuth.sendPasswordResetEmail(email);
         this.serverMessage = 'Check your email';
       }
-    } catch(err : any) {
+    } catch (err: any) {
       this.serverMessage = err;
     }
 
     this.loading = false;
-
   }
-
 }
