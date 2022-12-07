@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { FirebaseApp } from '@angular/fire/app';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Board } from './board.model';
 import * as firestore from 'firebase/firestore';
+import { doc, DocumentReference, getFirestore, runTransaction, writeBatch, WriteBatch } from 'firebase/firestore';
 import { switchMap } from 'rxjs';
-import { writeBatch } from 'firebase/firestore';
+import { Board } from './board.model';
 
 
 @Injectable({
@@ -51,11 +52,12 @@ export class BoardService {
     )
   }
 
-  sortBoards(boards: Board[]) {
-    // const db = fir
-    // const batch = writeBatch(db)
-    // const refs = boards.map(b => db.collection('boards').doc(b.id));
-    // refs.forEach((ref, idx) => batch.update(ref, {priority: idx}))
+  async sortBoards(boards: Board[]) {
+    const db = getFirestore()
+    const batch = writeBatch(db)
+    const refs = boards.map(b => doc(db, `${b.id}`));
+    refs.forEach((ref, idx) => batch.update(ref, { priority: idx }));
+    await batch.commit();
   }
 
 }

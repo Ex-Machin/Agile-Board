@@ -8,13 +8,13 @@ const routes: Routes = [
   { path: '', component: HomePageComponent },
   {
     path: 'login',
-    loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
+    loadChildren: () => import('./user/user.module').then(m => m.UserModule)
   },
   {
-    path: 'kanban ',
+    path: 'kanban',
     loadChildren: () =>
-      import('./kanban/kanban.module').then((m) => m.KanbanModule),
-    canActivate: [AuthGuard],
+      import('./kanban/kanban.module').then(m => m.KanbanModule),
+    canActivate: [AuthGuard]
   },
   { path: 'cabinet', component: CabinetComponent, canActivate: [AuthGuard] },
 ];

@@ -21,7 +21,7 @@
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <mat-form-field [color]="email?.valid && 'accent'">
-            <input matInput formControlName="email" type="email" placeholder="Email" autocomplete="off" />
+            <input matInput formControlName="email" type="email" placeholder="Email" autocomplete="new-email" class="input"/>
 
             <mat-error *ngIf="email?.invalid && email?.dirty">
                 You must enter a valid email address
@@ -29,7 +29,7 @@
         </mat-form-field>
 
         <mat-form-field [color]="email?.valid && 'accent'" *ngIf="!isPasswordReset">
-            <input matInput formControlName="password" type="password" placeholder="Password" autocomplete="off" />
+            <input matInput formControlName="password" type="password" placeholder="Password" autocomplete="new-password"  class="input"/>
 
             <mat-error *ngIf="password?.invalid && password?.dirty">
                 Password must be at least 6 characters long
@@ -37,8 +37,8 @@
         </mat-form-field>
 
         <mat-form-field [color]="passwordDoesMatch ? 'accent' : 'warn'" *ngIf="isSignup">
-            <input matInput formControlName="passwordConfirm" type="password" placeholder="Confirm password"
-                autocomplete="off" />
+            <input matInput formControlName="passwordConfirm" type="password" placeholder="Confirm password" class="input"
+                autocomplete="new-passwordConfirm" />
 
             <mat-error *ngIf="passwordConfirm?.dirty && !passwordDoesMatch">
                 Password does not match
